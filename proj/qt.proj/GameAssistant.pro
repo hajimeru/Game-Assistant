@@ -1,20 +1,29 @@
-QT += core
+QT += core widgets
 
 TARGET = GameAssistant
 
 TEMPLATE = app
 
-DESTDIR += $$PWD/../../bin
-
 #CONFIG += 
 
-#INCLUDE = 
+DESTDIR = $$PWD/../../bin
 
-HEADERS = $$PWD/../../include/project_test.h
-SOURCES = $$PWD/../../src/project_test.cpp
+UI_DIR = $$PWD/../../temp/ui
+
+MOC_DIR = $$PWD/../../temp/moc
+
+INCLUDEPATH = $$PWD/../../include
+
+HEADERS = $$PWD/../../include/project_test_mainwindow.h
+
+SOURCES = $$PWD/../../src/project_test_mainwindow.cpp \
+		  $$PWD/../../src/main.cpp 
+		  
+
+FORMS = $$PWD/../../forms/project_test_mainwindow.ui
 
 #LIBS = 
 
-UI_DIR += $$PWD/../../temp/ui
 
-MOC_DIR += $$PWD/../../temp/moc
+
+
