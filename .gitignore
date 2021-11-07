@@ -1,3 +1,4 @@
 temp/
 bin/
 proj/win32.proj
+*.pro.user
