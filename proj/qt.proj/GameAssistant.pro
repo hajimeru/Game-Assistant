@@ -4,7 +4,7 @@ TARGET = GameAssistant
 
 TEMPLATE = app
 
-#CONFIG += 
+CONFIG += c++11
 
 DESTDIR = $$PWD/../../bin
 
