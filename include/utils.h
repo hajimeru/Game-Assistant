@@ -1,5 +1,5 @@
-#ifndef UTILS_H
-#define UTILS_H
+#ifndef GAMEASSISTANT_UTILS_H
+#define GAMEASSISTANT_UTILS_H
 
 #include "game_assistant_global.h"
 
