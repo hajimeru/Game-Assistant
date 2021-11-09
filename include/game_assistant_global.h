@@ -1,7 +1,7 @@
 #ifndef GAME_ASSISTANT_GLOBAL_H
 #define GAME_ASSISTANT_GLOBAL_H
 
-#define NAMESPACE_GAME_ASSISTANT_BEGIN namespace GameAssistant {
+#define NAMESPACE_GAME_ASSISTANT_BEGIN namespace game_assitant {
 #define NAMESPACE_GAME_ASSISTANT_END }
-#define USING_NAMESPACE_GAME_ASSISTANT using namespace GameAssistant;
+#define USING_NAMESPACE_GAME_ASSISTANT using namespace game_assitant;
 #endif // GAME_ASSISTANT_GLOBAL_H

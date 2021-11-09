@@ -1,5 +1,5 @@
-#ifndef PROJECT_TEST_H
-#define PROJECT_TEST_H
+#ifndef PROJECT_TEST_MAINWINDOW_H
+#define PROJECT_TEST_MAINWINDOW_H
 
 #include <QMainWindow>
 
