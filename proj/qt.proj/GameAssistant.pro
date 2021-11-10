@@ -12,14 +12,19 @@ UI_DIR = $$PWD/../../temp/ui
 
 MOC_DIR = $$PWD/../../temp/moc
 
-INCLUDEPATH = $$PWD/../../include
+INCLUDEPATH = $$PWD/../../include \
+              $$PWD/../../include/config \
 
 HEADERS = $$PWD/../../include/project_test_mainwindow.h \
           $$PWD/../../include/game_assistant_global.h \
-          $$PWD/../../include/utils.h
+          $$PWD/../../include/utils.h \
+          $$PWD/../../include/config/abstract_config.h \
+          $$PWD/../../include/config/abstract_resource.h \
           
 SOURCES = $$PWD/../../src/project_test_mainwindow.cpp \
-          $$PWD/../../src/main.cpp 
+          $$PWD/../../src/main.cpp \
+          $$PWD/../../src/config/abstract_config.cpp \
+          $$PWD/../../src/config/abstract_resource.cpp \
 		  
 
 FORMS = $$PWD/../../forms/project_test_mainwindow.ui
