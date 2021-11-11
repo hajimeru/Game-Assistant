@@ -5,6 +5,8 @@
 
 #include <QApplication>
 #include <QString>
+#include <QFile>
+#include <QDebug>
 
 NAMESPACE_GAME_ASSISTANT_BEGIN
 namespace utils {
@@ -26,6 +28,24 @@ namespace utils {
       else
         break;
     }
+  }
+
+  static QString load_file_by_string(const QString& filename) {
+    QFile file(filename);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+      qDebug() << "Can't open the file by string!" << endl;
+      return QString();
+    }
+
+    QString str;
+    while (!file.atEnd())
+    {
+      QByteArray line = file.readLine();
+      QString line_str(line);
+      str.append(line_str);
+    }
+    return str;
   }
 }
 NAMESPACE_GAME_ASSISTANT_END

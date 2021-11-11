@@ -14,6 +14,7 @@ MOC_DIR = $$PWD/../../temp/moc
 
 INCLUDEPATH = $$PWD/../../include \
               $$PWD/../../include/config \
+              $$PWD/../../include/3rdparty \
 
 HEADERS = $$PWD/../../include/project_test_mainwindow.h \
           $$PWD/../../include/game_assistant_global.h \
