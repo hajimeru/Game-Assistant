@@ -1,47 +1,41 @@
 {
   "emulator": {
     "MuMuEmulator": {
-      "info":{
-        "doc":"网易MuMu",
-        "execdir":"D:\\Software\\MuMu\\emulator\\nemu\\EmulatorShell"
-      },
+      "description":"网易MuMu",
+      "execdir":"D:\\Software\\MuMu\\emulator\\nemu\\EmulatorShell",
       "adb": {
         "path": "[ExecDir]..\\vmonitor\\bin\\adb_server.exe",
         "connect": "[Adb] connect 127.0.0.1:7555",
         "click": "[Adb] -s 127.0.0.1:7555 shell input tap [x] [y]",
         "swipe": "[Adb] -s 127.0.0.1:7555 shell input swipe [x1] [y1] [x2] [y2] [duration]",
         "display": "[Adb] -s 127.0.0.1:7555 shell dumpsys window displays | grep init= | awk ' { print $3 } '",
-        "displayRegex": "cur=%dx%d",
+        "display_regex": "cur=%dx%d",
         "screencap": "[Adb] -s 127.0.0.1:7555 exec-out screencap -p"
       }
     },
     "Remote": {
-      "info":{
-        "doc":"利用IP地址连接",
-        "execdir":""
-      },
+      "description":"ip连接",
+      "execdir":"",
       "adb": {
         "path": "[ExecDir]platform-tools\\adb.exe",
         "connect": "[Adb] connect [Address]",
         "click": "[Adb] -s [Address] shell input tap [x] [y]",
         "swipe": "[Adb] -s [Address] shell input swipe [x1] [y1] [x2] [y2] [duration]",
         "display": "[Adb] -s [Address] shell dumpsys window displays | grep init= | awk ' { print $3 } '",
-        "displayRegex": "cur=%dx%d",
+        "display_regex": "cur=%dx%d",
         "screencap": "[Adb] -s [Address] exec-out screencap -p"
       }
     },
     "USB": {
-      "info":{
-        "doc":"利用USB直连",
-        "execdir":""
-      },
+      "description":"use连接",
+      "execdir":"",
       "adb": {
         "path": "[ExecDir]platform-tools\\adb.exe",
         "connect": "[Adb] devices",
         "click": "[Adb] shell input tap [x] [y]",
         "swipe": "[Adb] shell input swipe [x1] [y1] [x2] [y2] [duration]",
         "display": "[Adb] shell dumpsys window displays | grep init= | awk ' { print $3 } '",
-        "displayRegex": "cur=%dx%d",
+        "display_regex": "cur=%dx%d",
         "screencap": "[Adb] exec-out screencap -p"
       }
     }
