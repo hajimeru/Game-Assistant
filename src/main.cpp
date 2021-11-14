@@ -4,7 +4,9 @@
 #include <QProcess>
 #include <qdebug.h>
 
-#include "terminal_config.h"
+#include "resource.h"
+#include "utils.h"
+
 int main(int argc, char *argv[])
 {
   USING_NAMESPACE_GAME_ASSISTANT;
@@ -19,6 +21,15 @@ int main(int argc, char *argv[])
   //process->waitForFinished();
   //QString str = QString::fromLocal8Bit(process->readAllStandardOutput());
   //qDebug() << "[QProcess]" << str;
+
+  //[test] game_assitant::Resource
+  resource_instance.Load(utils::get_resource_dir());
+  auto& terminal_config = resource_instance.get_terminal_config();
+  auto& emulator_map = terminal_config.get_emulators_map();
+  for (auto& m : emulator_map) {
+    qDebug() << m.name;
+  }
+
 
   w.show();
   return a.exec();

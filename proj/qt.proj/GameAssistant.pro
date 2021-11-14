@@ -20,14 +20,18 @@ HEADERS = $$PWD/../../include/project_test_mainwindow.h \
           $$PWD/../../include/game_assistant_global.h \
           $$PWD/../../include/utils.h \
           $$PWD/../../include/controller.h \
+          $$PWD/../../include/resource.h \
           $$PWD/../../include/config/abstract_config.h \
           $$PWD/../../include/config/abstract_resource.h \
+          $$PWD/../../include/config/terminal_config.h \
           
 SOURCES = $$PWD/../../src/project_test_mainwindow.cpp \
           $$PWD/../../src/main.cpp \
           $$PWD/../../src/controller.cpp \
+          $$PWD/../../src/resource.cpp \
           $$PWD/../../src/config/abstract_config.cpp \
           $$PWD/../../src/config/abstract_resource.cpp \
+          $$PWD/../../src/config/terminal_config.cpp \
 		  
 
 FORMS = $$PWD/../../forms/project_test_mainwindow.ui

@@ -11,7 +11,7 @@
 NAMESPACE_GAME_ASSISTANT_BEGIN
 namespace utils {
   static QString get_current_dir() {
-    static QString current_dir = QApplication::applicationDirPath();
+    static QString current_dir = QApplication::applicationDirPath()+ "/";
     return current_dir;
   }
 

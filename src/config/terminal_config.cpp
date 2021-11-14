@@ -2,7 +2,7 @@
 
 NAMESPACE_GAME_ASSISTANT_BEGIN
 
-bool TerminalConfig::parse(const rapidjson::Document& document) {
+bool TerminalConfig::Parse(const rapidjson::Document& document) {
 
   for (auto itr = document["emulator"].MemberBegin(); itr != document["emulator"].MemberEnd(); ++itr) {
     EmulatorInfo emulator_info;

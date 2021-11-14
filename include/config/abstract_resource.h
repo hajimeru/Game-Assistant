@@ -16,14 +16,14 @@ public:
   virtual bool Load(const QString& filename) = 0;
   virtual const QString& get_last_error() const noexcept
   {
-    return m_last_error;
+    return last_error_;
   }
  
   AbstractResource& operator=(const AbstractResource& rhs) = delete;
   AbstractResource& operator=(AbstractResource&& rhs) = delete;
 
-private:
-  QString m_last_error;
+protected:
+  QString last_error_;
 };
 NAMESPACE_GAME_ASSISTANT_END
 #endif
