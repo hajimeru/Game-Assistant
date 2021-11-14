@@ -13,7 +13,7 @@ public:
 
   virtual ~AbstractResource() = default;
 
-  virtual bool load(const QString& filename) = 0;
+  virtual bool Load(const QString& filename) = 0;
   virtual const QString& get_last_error() const noexcept
   {
     return m_last_error;

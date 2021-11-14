@@ -4,9 +4,9 @@
 #include "utils.h"
 USING_NAMESPACE_GAME_ASSISTANT
 
-bool AbstractConfig::load(const QString& filename)
+bool AbstractConfig::Load(const QString& filename)
 {
-  QString json = utils::load_file_by_string(filename);
+  QString json = utils::LoadFileByString(filename);
   rapidjson::Document document;
   document.Parse(json.toStdString().c_str()); // 解析，Parse()无返回值，也不会抛异常
   if (document.HasParseError()) // 通过HasParseError()来判断解析是否成功
@@ -18,5 +18,5 @@ bool AbstractConfig::load(const QString& filename)
     qDebug()<< QString::asprintf("parse error: (%d:%d)%s\n", document.GetParseError(), document.GetErrorOffset(), rapidjson::GetParseError_En(document.GetParseError()));
     return false;
   }
-  return parse(document);
+  return Parse(document);
 }

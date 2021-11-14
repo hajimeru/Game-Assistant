@@ -14,7 +14,7 @@ public:
   }
 
 protected:
-  virtual bool parse(const rapidjson::Document& document) override;
+  virtual bool Parse(const rapidjson::Document& document) override;
 
 private:
   QHash<QString, EmulatorInfo> emulators_info_;

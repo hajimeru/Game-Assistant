@@ -20,7 +20,7 @@ namespace utils {
     return resource_dir;
   }
 
-  static QString string_replace_all(const QString& src, const QString& old_value, const QString& new_value) {
+  static QString ReplaceStringAll(const QString& src, const QString& old_value, const QString& new_value) {
     QString str = src;
     for (int pos = 0; pos < str.length(); pos += new_value.length()) {
       if ((pos = str.indexOf(old_value, pos) != -1))
@@ -30,7 +30,7 @@ namespace utils {
     }
   }
 
-  static QString load_file_by_string(const QString& filename) {
+  static QString LoadFileByString(const QString& filename) {
     QFile file(filename);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
