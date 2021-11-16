@@ -5,6 +5,7 @@
 #include <qdebug.h>
 
 #include "resource.h"
+#include "controller.h"
 #include "utils.h"
 
 int main(int argc, char *argv[])
@@ -27,9 +28,11 @@ int main(int argc, char *argv[])
   auto& terminal_config = resource_instance.get_terminal_config();
   auto& emulator_map = terminal_config.get_emulators_map();
   for (auto& m : emulator_map) {
-    qDebug() << m.name;
+    if(m.name == "MuMuEmulator")
+      controller_instance.TryCaptureEmulator(m);
   }
 
+  //[test] controller
 
   w.show();
   return a.exec();

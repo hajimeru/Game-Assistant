@@ -4,6 +4,8 @@
 #include <QPair>
 #include <QVector>
 
+#include "global_struct_define.h"
+
 NAMESPACE_GAME_ASSISTANT_BEGIN
 class Controller {
 public:
@@ -16,13 +18,18 @@ public:
     return unique_instance;
   }
 
+  bool TryCaptureEmulator(const EmulatorInfo& emulator_info);
+
   Controller& operator=(const Controller&) = delete;
   Controller& operator=(Controller&&) = delete;
+
 private:
   Controller();
-
-  QPair<bool, QVector<unsigned char>> CallCommand(const QString& cmd);
+  QPair<bool, QByteArray> CallCommand(const QString& cmd);
   bool Screencap();
+
+private:
+  EmulatorInfo emulator_info_;
 };
 static auto& controller_instance = Controller::get_instance();
 NAMESPACE_GAME_ASSISTANT_END

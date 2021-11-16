@@ -1,0 +1,2 @@
+D:/Software/MuMu/emulator/nemu/EmulatorShell/../vmonitor/bin/adb_server.exe connect 127.0.0.1:7555
+D:/Software/MuMu/emulator/nemu/EmulatorShell/../vmonitor/bin/adb_server.exe -s 127.0.0.1:7555 shell dumpsys window displays | grep init= | awk '{ print $3 }'
