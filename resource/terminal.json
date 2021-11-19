@@ -13,6 +13,32 @@
         "screencap": "[Adb] -s 127.0.0.1:7555 exec-out screencap -p"
       }
     },
+    "XYAZ": {
+      "description":"逍遥安卓",
+      "execdir":"D:/Software/XiaoYaoAnZhuo/Microvirt/MEmu",
+      "adb": {
+        "path": "[ExecDir]adb.exe",
+        "connect": "[Adb] connect 127.0.0.1:21503",
+        "click": "[Adb] -s 127.0.0.1:21503 shell input tap [x] [y]",
+        "swipe": "[Adb] -s 127.0.0.1:21503 shell input swipe [x1] [y1] [x2] [y2] [duration]",
+        "display": "[Adb] -s 127.0.0.1:21503 shell dumpsys window displays | grep init=",
+        "display_regex": "cur=%dx%d",
+        "screencap": "[Adb] -s 127.0.0.1:21503 shell screencap -p"
+      }
+    },
+    "LDPlayer64": {
+      "description":"雷电模拟器64位",
+      "execdir":"D:/Software/LeiDian/leidian/LDPlayer64",
+      "adb": {
+        "path": "[ExecDir]adb.exe",
+        "connect": "[Adb] connect 127.0.0.1:5555",
+        "click": "[Adb] -s connect 127.0.0.1:5555 shell input tap [x] [y]",
+        "swipe": "[Adb] -s connect 127.0.0.1:5555 shell input swipe [x1] [y1] [x2] [y2] [duration]",
+        "display": "[Adb] -s connect 127.0.0.1:5555 shell dumpsys window displays | grep init=",
+        "display_regex": "cur=%dx%d",
+        "screencap": "[Adb] -s connect 127.0.0.1:5555 shell screencap -p"
+      }
+    },
     "Remote": {
       "description":"ip连接",
       "execdir":"",

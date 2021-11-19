@@ -1,4 +1,4 @@
-#ifndef GAMEASSISTANT_UTILS_H_
+﻿#ifndef GAMEASSISTANT_UTILS_H_
 #define GAMEASSISTANT_UTILS_H_
 
 #include "game_assistant_global.h"

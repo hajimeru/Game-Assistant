@@ -36,7 +36,7 @@ SOURCES = $$PWD/../../src/project_test_mainwindow.cpp \
 
 FORMS = $$PWD/../../forms/project_test_mainwindow.ui
 
-#LIBS = 
+LIBS = -L$$PWD/../../lib -lopencv_world454
 
 
 

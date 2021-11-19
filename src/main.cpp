@@ -1,4 +1,4 @@
-#include "project_test_mainwindow.h"
+﻿#include "project_test_mainwindow.h"
 
 #include <QApplication>
 #include <QProcess>
@@ -28,10 +28,10 @@ int main(int argc, char *argv[])
   auto& terminal_config = resource_instance.get_terminal_config();
   auto& emulator_map = terminal_config.get_emulators_map();
   for (auto& m : emulator_map) {
-    if(m.name == "MuMuEmulator")
+    if(m.name == "LDPlayer64")
       controller_instance.TryCaptureEmulator(m);
   }
-
+  controller_instance.TestScreencap();
   //[test] controller
 
   w.show();

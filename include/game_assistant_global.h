@@ -1,4 +1,4 @@
-#ifndef GAME_ASSISTANT_GLOBAL_H_
+﻿#ifndef GAME_ASSISTANT_GLOBAL_H_
 #define GAME_ASSISTANT_GLOBAL_H_
 
 #define NAMESPACE_GAME_ASSISTANT_BEGIN namespace game_assitant {

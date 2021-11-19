@@ -1,4 +1,4 @@
-#include "abstract_config.h"
+ï»¿#include "abstract_config.h"
 #include <rapidjson/error/en.h>
 
 #include "utils.h"
@@ -8,13 +8,13 @@ bool AbstractConfig::Load(const QString& filename)
 {
   QString json = utils::LoadFileByString(filename);
   rapidjson::Document document;
-  document.Parse(json.toStdString().c_str()); // ½âÎö£¬Parse()ÎŞ·µ»ØÖµ£¬Ò²²»»áÅ×Òì³£
-  if (document.HasParseError()) // Í¨¹ıHasParseError()À´ÅĞ¶Ï½âÎöÊÇ·ñ³É¹¦
+  document.Parse(json.toStdString().c_str()); // è§£æï¼ŒParse()æ— è¿”å›å€¼ï¼Œä¹Ÿä¸ä¼šæŠ›å¼‚å¸¸
+  if (document.HasParseError()) // é€šè¿‡HasParseError()æ¥åˆ¤æ–­è§£ææ˜¯å¦æˆåŠŸ
   {
-    // ¿ÉÍ¨¹ıGetParseError()È¡µÃ³ö´í´úÂë£¬
-    // ×¢ÒâGetParseError()·µ»ØµÄÊÇÒ»¸örapidjson::ParseErrorCodeÀàĞÍµÄÃ¶¾ÙÖµ
-    // Ê¹ÓÃº¯Êırapidjson::GetParseError_En()µÃµ½´íÎóÂëµÄ×Ö·û´®ËµÃ÷£¬ÕâÀïµÄEnÎªEnglish¼òĞ´
-    // º¯ÊıGetErrorOffset()·µ»Ø³ö´í·¢ÉúµÄÎ»ÖÃ
+    // å¯é€šè¿‡GetParseError()å–å¾—å‡ºé”™ä»£ç ï¼Œ
+    // æ³¨æ„GetParseError()è¿”å›çš„æ˜¯ä¸€ä¸ªrapidjson::ParseErrorCodeç±»å‹çš„æšä¸¾å€¼
+    // ä½¿ç”¨å‡½æ•°rapidjson::GetParseError_En()å¾—åˆ°é”™è¯¯ç çš„å­—ç¬¦ä¸²è¯´æ˜ï¼Œè¿™é‡Œçš„Enä¸ºEnglishç®€å†™
+    // å‡½æ•°GetErrorOffset()è¿”å›å‡ºé”™å‘ç”Ÿçš„ä½ç½®
     qDebug()<< QString::asprintf("parse error: (%d:%d)%s\n", document.GetParseError(), document.GetErrorOffset(), rapidjson::GetParseError_En(document.GetParseError()));
     return false;
   }

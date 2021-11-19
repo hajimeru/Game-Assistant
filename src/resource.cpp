@@ -1,4 +1,4 @@
-#include "resource.h"
+﻿#include "resource.h"
 
 USING_NAMESPACE_GAME_ASSISTANT
 

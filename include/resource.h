@@ -1,4 +1,4 @@
-#ifndef GAME_ASSISTANT_RESOURCE_H_
+﻿#ifndef GAME_ASSISTANT_RESOURCE_H_
 #define GAME_ASSISTANT_RESOURCE_H_
 #include "game_assistant_global.h"
 #include "abstract_resource.h"

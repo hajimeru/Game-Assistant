@@ -1,4 +1,4 @@
-#include "terminal_config.h"
+﻿#include "terminal_config.h"
 
 NAMESPACE_GAME_ASSISTANT_BEGIN
 

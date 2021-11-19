@@ -23,11 +23,13 @@ public:
   Controller& operator=(const Controller&) = delete;
   Controller& operator=(Controller&&) = delete;
 
+  void TestScreencap() { Screencap(); }
+
 private:
   Controller();
   QPair<bool, QByteArray> CallCommand(const QString& cmd);
   bool Screencap();
-
+  void ConvertCrlfToLf(QByteArray& data);
 private:
   EmulatorInfo emulator_info_;
 };

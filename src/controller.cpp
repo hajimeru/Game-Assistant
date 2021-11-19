@@ -1,4 +1,4 @@
-#include "controller.h"
+ï»¿#include "controller.h"
 #include <QProcess>
 #include <QMutex>
 #include <QDebug>
@@ -49,6 +49,8 @@ bool Controller::TryCaptureEmulator(const EmulatorInfo& emulator_info)
     click_cmd, "[Adb]", adb_path);
   emulator_info_.adb.click = click_cmd;
 
+  //å°è¯•è¿æ¥
+
   return true;
 }
 
@@ -65,7 +67,7 @@ QPair<bool, QByteArray> Controller::CallCommand(const QString& cmd)
   QByteArray data;
   quint64 error_code = -1;
   if ((error_code = process.exitStatus()) == QProcess::NormalExit) {
-    //´¦Àí·µ»ØµÄÊı¾İ
+    //å¤„ç†è¿”å›çš„æ•°æ®
     data = process.readAllStandardOutput();
   }
   else {
@@ -76,8 +78,48 @@ QPair<bool, QByteArray> Controller::CallCommand(const QString& cmd)
 
 bool Controller::Screencap()
 {
-  //´¦Àí½ØÍ¼µÄÃüÁî
-
-  //µ÷ÓÃ CallCommand
+  //å¤„ç†æˆªå›¾çš„å‘½ä»¤
+  auto&& ret_data = CallCommand(emulator_info_.adb.screencap);
+  bool ret = ret_data.first;
+  if (ret && !ret_data.second.isEmpty()) {
+    ConvertCrlfToLf(ret_data.second);
+  }
+  //è°ƒç”¨ CallCommand
   return true;
+}
+
+void Controller::ConvertCrlfToLf(QByteArray& data)
+{
+  if (data.isEmpty() || data.size() <= 1) {
+    return;
+  }
+  
+  auto IsCrlf = [](const char* cur)-> bool {
+    return *cur == '\r' && *(cur + 1) == '\n';
+  };
+  
+  char* first_iter = NULL;
+  for (char* iter = data.begin(); iter != data.end() - 1; ++iter) {
+    if (IsCrlf(iter)) {
+      first_iter = iter;
+      break;
+    }
+  }
+
+  if (first_iter == NULL) {
+    return;
+  }
+
+  // å°†æ‰€æœ‰çš„crlfå‰”é™¤
+  char* end_return1_iter = data.end() - 1;
+  char* next_iter = first_iter;
+  while (++first_iter != end_return1_iter){
+    if (!IsCrlf(first_iter)) {
+      *next_iter = std::move(*first_iter);
+      ++next_iter;
+    }
+  }
+  *next_iter = std::move(*end_return1_iter);
+  ++next_iter;
+  data.remove(data.lastIndexOf(next_iter),data.end() - next_iter);
 }

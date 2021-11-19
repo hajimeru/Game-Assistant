@@ -1,4 +1,4 @@
-#ifndef GAMEASSISTANT_TERMINAL_CONFIG_H_ 
+﻿#ifndef GAMEASSISTANT_TERMINAL_CONFIG_H_ 
 #define GAMEASSISTANT_TERMINAL_CONFIG_H_
 #include "game_assistant_global.h"
 #include "abstract_config.h"
