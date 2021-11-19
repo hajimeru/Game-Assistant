@@ -1,4 +1,6 @@
 temp/
-bin/
+bin/*.exe
+bin/*.ilk
+bin/*.pdb
 proj/win32.proj
 *.pro.user
