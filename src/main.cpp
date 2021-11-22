@@ -31,8 +31,7 @@ int main(int argc, char *argv[])
     if(m.name == "LDPlayer64")
       controller_instance.TryCaptureEmulator(m);
   }
-  controller_instance.TestScreencap();
-  //[test] controller
+  cv::imwrite("./xxx.png", controller_instance.GetCurrentImage(false)) ;
 
   w.show();
   return a.exec();

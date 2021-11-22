@@ -32,11 +32,11 @@
       "adb": {
         "path": "[ExecDir]adb.exe",
         "connect": "[Adb] connect 127.0.0.1:5555",
-        "click": "[Adb] -s connect 127.0.0.1:5555 shell input tap [x] [y]",
-        "swipe": "[Adb] -s connect 127.0.0.1:5555 shell input swipe [x1] [y1] [x2] [y2] [duration]",
-        "display": "[Adb] -s connect 127.0.0.1:5555 shell dumpsys window displays | grep init=",
+        "click": "[Adb] -s emulator-5554 shell input tap [x] [y]",
+        "swipe": "[Adb] -s emulator-5554 shell input swipe [x1] [y1] [x2] [y2] [duration]",
+        "display": "[Adb] -s emulator-5554 shell dumpsys window displays | grep init= | awk ' { print $3 } '",
         "display_regex": "cur=%dx%d",
-        "screencap": "[Adb] -s connect 127.0.0.1:5555 shell screencap -p"
+        "screencap": "[Adb] -s emulator-5554 shell screencap -p"
       }
     },
     "Remote": {

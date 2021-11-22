@@ -2,6 +2,7 @@
 #include <QProcess>
 #include <QMutex>
 #include <QDebug>
+
 #include "utils.h"
 USING_NAMESPACE_GAME_ASSISTANT
 
@@ -50,8 +51,41 @@ bool Controller::TryCaptureEmulator(const EmulatorInfo& emulator_info)
   emulator_info_.adb.click = click_cmd;
 
   //尝试连接
+  auto&& ret_connect_data = CallCommand(emulator_info_.adb.connect);
+  // [todo] 即使端口错误，命令仍然会返回 0，需要做进一步的判断
+  if (!ret_connect_data.first) {
+    return false;
+  }
+  //获取屏幕大小
+  auto&& ret_display_data = CallCommand(emulator_info_.adb.display);
+  if (!ret_display_data.first) {
+    return false;
+  }
+  QByteArray display_data = ret_display_data.second;
+  QByteArray display_regex = emulator_info_.adb.display_regex.toLocal8Bit();
+  int size_value1,size_value2;
+  sscanf_s(display_data.data(), display_regex.data(), &size_value1, &size_value2);
+  
+  display_width_ = qMax(size_value1, size_value2);
+  display_height_ = qMin(size_value1, size_value2);
 
   return true;
+}
+
+cv::Mat Controller::GetCurrentImage(bool raw)
+{
+  if (!Screencap()) {
+    return cv::Mat();
+  }
+  if (raw) {
+    return cache_image_;
+  }
+  else {
+    const static cv::Size size(display_width_, display_height_);
+    cv::Mat resize_mat;
+    cv::resize(cache_image_, resize_mat, size, cv::INPAINT_NS);
+    return resize_mat;
+  }
 }
 
 QPair<bool, QByteArray> Controller::CallCommand(const QString& cmd)
@@ -81,12 +115,29 @@ bool Controller::Screencap()
   //处理截图的命令
   auto&& ret_data = CallCommand(emulator_info_.adb.screencap);
   bool ret = ret_data.first;
-  if (ret && !ret_data.second.isEmpty()) {
-    ConvertCrlfToLf(ret_data.second);
+  QByteArray& data = ret_data.second;
+  if (ret && !data.isEmpty()) {
+    cache_image_ = cv::imdecode(
+      cv::Mat(1, data.length(), CV_8UC1, data.begin()),
+      cv::IMREAD_COLOR);
+    if (cache_image_.empty()) {
+      qDebug() << "Data is not empty, but image is empty, try to convert lf";
+      ConvertCrlfToLf(data);
+      cache_image_ = cv::imdecode(
+        cv::Mat(1, data.length(), CV_8UC1, data.begin()),
+        cv::IMREAD_COLOR);
+      if (cache_image_.empty()) {
+        qDebug() << "convert lf and retry decode falied!";
+        return false;
+      }
+    }
   }
-  //调用 CallCommand
+  else {
+    qDebug() << "Data is empty!";
+    return false;
+  }
   return true;
-}
+} 
 
 void Controller::ConvertCrlfToLf(QByteArray& data)
 {

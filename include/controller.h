@@ -3,6 +3,7 @@
 #include "game_assistant_global.h"
 #include <QPair>
 #include <QVector>
+#include <opencv2/opencv.hpp>
 
 #include "global_struct_define.h"
 
@@ -25,6 +26,8 @@ public:
 
   void TestScreencap() { Screencap(); }
 
+  cv::Mat GetCurrentImage(bool raw);
+
 private:
   Controller();
   QPair<bool, QByteArray> CallCommand(const QString& cmd);
@@ -32,6 +35,10 @@ private:
   void ConvertCrlfToLf(QByteArray& data);
 private:
   EmulatorInfo emulator_info_;
+  int display_height_;
+  int display_width_;
+
+  cv::Mat cache_image_;
 };
 static auto& controller_instance = Controller::get_instance();
 NAMESPACE_GAME_ASSISTANT_END
