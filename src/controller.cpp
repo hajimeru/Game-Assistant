@@ -2,18 +2,20 @@
 #include <QProcess>
 #include <QMutex>
 #include <QDebug>
-
+#include <QtConcurrent>
 #include "utils.h"
 USING_NAMESPACE_GAME_ASSISTANT
 
 Controller::~Controller()
 {
-
+  is_cmd_thread_exit = true;
+  cmd_wait_condition.notify_all();
 }
 
 Controller::Controller()
 {
-
+  //启动 cmd 工作线程
+  QtConcurrent::run(this,&Controller::CmdWorkThreadFunc);
 }
 
 bool Controller::TryCaptureEmulator(const EmulatorInfo& emulator_info)
@@ -173,4 +175,29 @@ void Controller::ConvertCrlfToLf(QByteArray& data)
   *next_iter = std::move(*end_return1_iter);
   ++next_iter;
   data.remove(data.lastIndexOf(next_iter),data.end() - next_iter);
+}
+
+int Controller::PushCmd(const QString& cmd)
+{
+  QMutexLocker locker(&cmd_queue_mutex_);
+  cmd_queue_.enqueue(cmd);
+  cmd_wait_condition.notify_one();
+  return ++push_id_;
+}
+
+void Controller::CmdWorkThreadFunc()
+{
+  while (!is_cmd_thread_exit) {
+    QMutexLocker locker(&cmd_queue_mutex_);
+    if (!cmd_queue_.empty()) {
+      QString cmd = cmd_queue_.dequeue();
+      cmd_queue_mutex_.unlock();
+      CallCommand(cmd);
+      //[todo] 这里还需要判断命令是否执行成功
+      ++complete_id_;
+    }
+    else {
+      cmd_wait_condition.wait(&cmd_queue_mutex_);
+    }
+  }
 }
